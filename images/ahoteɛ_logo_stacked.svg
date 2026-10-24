@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="ahoteɛ logo stacked">
+  <title>ahoteɛ — stacked</title>
+
+  <!-- Icon centered -->
+  <circle cx="200" cy="160" r="100" fill="#1FA8D9"/>
+  <ellipse cx="170" cy="124" rx="24" ry="15" fill="#FFFFFF" opacity="0.42"/>
+  <circle cx="155" cy="111" r="5" fill="#FFFFFF" opacity="0.7"/>
+
+  <path d="M 200 88
+           C 204 137, 211 154, 260 160
+           C 211 166, 204 183, 200 232
+           C 196 183, 189 166, 140 160
+           C 189 154, 196 137, 200 88 Z"
+        fill="#FFFFFF"/>
+
+  <path d="M 305 95
+           C 307 105, 311 109, 321 111
+           C 311 113, 307 117, 305 127
+           C 303 117, 299 113, 289 111
+           C 299 109, 303 105, 305 95 Z"
+        fill="#1FA8D9"/>
+
+  <path d="M 90 220
+           C 92 226, 95 229, 101 231
+           C 95 233, 92 236, 90 242
+           C 88 236, 85 233, 79 231
+           C 85 229, 88 226, 90 220 Z"
+        fill="#5FC4E6"/>
+
+  <!-- Wordmark with accent ɛ -->
+  <text x="200" y="345"
+        text-anchor="middle"
+        font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+        font-size="86"
+        font-weight="700"
+        fill="#143659"
+        letter-spacing="-2">ahote<tspan fill="#1FA8D9">ɛ</tspan></text>
+</svg>

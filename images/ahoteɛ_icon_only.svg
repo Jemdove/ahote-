@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="ahoteɛ icon">
+  <title>ahoteɛ icon</title>
+
+  <!-- Bubble -->
+  <circle cx="120" cy="120" r="100" fill="#1FA8D9"/>
+
+  <!-- Glossy highlight -->
+  <ellipse cx="88" cy="82" rx="24" ry="15" fill="#FFFFFF" opacity="0.42"/>
+  <circle cx="73" cy="68" r="6" fill="#FFFFFF" opacity="0.7"/>
+
+  <!-- 4-point sparkle -->
+  <path d="M 120 48
+           C 124 96, 132 112, 188 120
+           C 132 128, 124 144, 120 192
+           C 116 144, 108 128, 52 120
+           C 108 112, 116 96, 120 48 Z"
+        fill="#FFFFFF"/>
+</svg>

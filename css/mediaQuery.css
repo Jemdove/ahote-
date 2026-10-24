@@ -1,0 +1,931 @@
+/* ════════════════════════════════════════════════════════════════════════
+   ahoteɛ — RESPONSIVE STYLES (shared by index.html + crew.html)
+   Reference files: styles.css (main site) · crew_styles.css (crew page)
+
+   Breakpoints below are mapped 1:1 to the device presets used for testing
+   (Chrome DevTools list), so every rule targets a real screen width instead
+   of a guessed number. Anything wider than 1024px (Nest Hub Max at 1280px,
+   full desktop, etc.) gets the plain desktop layout from styles.css /
+   crew_styles.css — no breakpoint rules apply above that:
+
+     1024px → iPad Pro · Nest Hub · Asus Zenbook Fold (unfolded, 853–1024)
+      912px → Surface Pro 7
+      820px → iPad Air
+      768px → iPad Mini            ← navigation switches to the mobile menu
+      600px → Surface Duo (540) · large phones in landscape
+      430px → iPhone 14/15/16 Pro Max (430) · iPhone XR (414) ·
+               Pixel 7/8/9/10 (412) · Galaxy S20 Ultra / A51 / A71 (412)
+      390px → iPhone 12 Pro
+      375px → iPhone SE
+      360px → Galaxy S8+
+      344px → Galaxy Z Fold 5 (folded / cover screen)
+
+   Order: largest → smallest (desktop-first, cascading max-width queries).
+   Each breakpoint is declared ONCE — no repeated/contradicting blocks.
+   ════════════════════════════════════════════════════════════════════════ */
+
+   /* ════════════════════════════════════════════════════════════════════════
+   1280px and below  —  Nest Hub Max · Nest Hub ) */
+
+   @media (max-width: 1280px) {
+
+  *, *::before, *::after { min-width: 0; }
+  img, video { max-width: 100%; height: auto; }
+  body { overflow-x: hidden; }
+
+  .nav { padding: 0.6rem clamp(0.9rem, 3vw, 1.5rem); }
+  .nav__brand { margin-left: 0; }
+  .navBrand_grid { font-size: clamp(1.4rem, 3.5vw, 2rem); margin-left: -1rem; }
+  .navBrand_grid .logo { height: clamp(52px, 9vw, 80px); width: auto; margin-left: -1rem; }
+  .navBrand_grid p { display: none; }
+  .navLogoText {margin-top: 0.2rem;}   
+
+  .about__story-body p { font-size: 1.2rem; }
+  .why__lead, .why__list {font-size: 1.2rem;}
+
+   /* ─── TESTIMONIALS ─── */
+  .testimonial { flex-basis: min(100vw, 600px); padding: 1rem; }
+  .testimonial_body h3 { font-size: 1.5rem; }
+  .testimonial_body p { font-size: 1.3rem; }
+  .avatar { width: 90px; height: 90px; }
+
+  .about_grid,
+  .why__grid {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 3.2rem);
+  }
+  .why__media { max-width: 620px; margin: 0 auto; }
+  .about__story-body,
+  .why__body { margin-top: 0; }
+  .about__divider { margin-top: 0; }
+
+  /* index.html — Services (All / Commercial / Residential): fixed
+     380px × 4 columns (1520px total) made fluid for tablet widths. */
+  .services_grid,
+  .commercial_grid,
+  .residential_grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  /* index.html — crew teaser cards under About */
+  .about__team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  }
+
+  /* index.html — footer.
+     styles.css sets .footer to a FIXED height:500px and gives .footer__col
+     a margin-bottom of 35% — percentage margins resolve against the
+     parent's WIDTH, not height. Once the grid below collapses to fewer,
+     wider columns on tablets, that 35% grows large enough to push the
+     column content taller than the fixed 500px box, and the overflow
+     spills out as blank white space below the navy background. Freeing
+     the height here (only at tablet widths and below) fixes it without
+     touching how the footer renders on desktop. */
+  .footer {
+    height: auto;
+  }
+  .footer__grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.1rem;
+  }
+  .footer__col {
+    margin-bottom: 2.5rem;
+  }
+  .footer { padding-bottom: 2rem; }
+  .footer__col { margin-bottom: 1.5rem; }
+  .brand_grid { font-size: 1.4rem; margin-left: 0.3rem; }
+  .brand_grid p { margin-left: -3rem; margin-top: 3rem;}
+  .footer_logo { height: 4rem; margin-right: 0.2rem; }
+  .footer__bottom {font-size: 1.3rem;}
+
+  /* crew.html — bio + image panels: fixed columns (600px 1000px / 600px
+     900px) made fluid so they don't force a scrollbar on tablets. */
+  .ama_grid,
+  .afia_grid,
+  .josie_grid,
+  .jem_grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+  }
+
+  /* crew.html — "team under X" avatar rows: fixed 250px/300px columns
+     made fluid so tablets get as many as fit instead of overflowing. */
+  .team-animated-group {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .jemteam-animated-group {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  /* crew.html — decorative rules pinned to 1000px, wider than a tablet */
+  .about__divider,
+  .crew-content hr,
+  hr {
+    width: min(100%, 1000px);
+  }
+
+  /* crew.html — avatar row is nowrap by design on desktop; let it wrap
+     once the four avatars no longer fit a tablet-width row. */
+  .crew_link {
+    flex-wrap: wrap;
+    row-gap: 1.5rem;
+  }
+
+  .section {
+    padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+
+  /* crew: keep the two-column bio/image layout but tighten it */
+  .ama_grid, .afia_grid, .josie_grid, .jem_grid {
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+  }
+  .amaservice-image,
+  .afiaservice-image,
+  .josieservice-image {
+    height: clamp(340px, 42vw, 600px);
+  }
+
+  .crewBrand_grid {margin-left: 52rem;} 
+  .crewBrand_grid p{margin-left: -4rem;}
+
+  .crew-content {
+    padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 1.5rem);
+  }
+
+  .team-card .team-avatar {
+    width: clamp(150px, 20vw, 200px);
+    height: clamp(150px, 20vw, 200px);
+  }
+  .about__team-grid .team-card .team-avatar {
+    width: clamp(140px, 20vw, 190px);
+    height: clamp(140px, 20vw, 190px);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   1024px and below  —  iPad Pro · Nest Hub · Asus Zenbook Fold (unfolded)
+   Everything above this width is left entirely to styles.css /
+   crew_styles.css — nothing in this file touches desktop layout.
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1032px) {
+
+  *, *::before, *::after { min-width: 0; }
+  img, video { max-width: 100%; height: auto; }
+  body { overflow-x: hidden; }
+
+  /* index.html — About.
+     styles.css sets fixed columns (600px 1200px) that only fit very wide
+     screens. .about_grid's two children are the founding-story text AND
+     the "why us" block, and that second child (.why__grid) is ITSELF a
+     2-column image+text grid. At exactly this width there isn't room for
+     a 2-column grid nested inside another 2-column grid — the "why us"
+     heading and body text get squeezed into a column so narrow that
+     multi-word phrases wrap one word per line. Stacking both grids to a
+     single column here (instead of only from 912px down) fixes iPad
+     Pro's portrait width specifically, without touching anything above
+     1024px. */
+
+  .nav { padding: 0.6rem clamp(0.9rem, 3vw, 1.5rem); }
+  .nav__brand { margin-left: 0; }
+  .navBrand_grid { font-size: clamp(1.4rem, 3.5vw, 2rem); margin-left: -1rem; }
+  .navBrand_grid .logo { height: clamp(52px, 9vw, 80px); width: auto; margin-left: -1rem; }
+  .navBrand_grid p { display: none; }
+  .navLogoText {margin-top: 0.2rem;}   
+
+    .about__story-body p { font-size: 1.5rem; }
+  .why__lead, .why__list {font-size: 1.5rem;}
+
+   /* ─── TESTIMONIALS ─── */
+  .testimonial { flex-basis: min(100vw, 495px); padding: 1rem; }
+  .testimonial_body h3 { font-size: 1.5rem; }
+  .testimonial_body p { font-size: 1.5rem; }
+  .avatar { width: 90px; height: 90px; }
+
+  .about_grid,
+  .why__grid {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 3.2rem);
+  }
+  .why__media { max-width: 620px; margin: 0 auto; }
+  .about__story-body,
+  .why__body { margin-top: 0; }
+  .about__divider { margin-top: 0; }
+
+  /* index.html — Services (All / Commercial / Residential): fixed
+     380px × 4 columns (1520px total) made fluid for tablet widths. */
+  .services_grid,
+  .commercial_grid,
+  .residential_grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  /* index.html — crew teaser cards under About */
+  .about__team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  }
+
+  /* index.html — footer.
+     styles.css sets .footer to a FIXED height:500px and gives .footer__col
+     a margin-bottom of 35% — percentage margins resolve against the
+     parent's WIDTH, not height. Once the grid below collapses to fewer,
+     wider columns on tablets, that 35% grows large enough to push the
+     column content taller than the fixed 500px box, and the overflow
+     spills out as blank white space below the navy background. Freeing
+     the height here (only at tablet widths and below) fixes it without
+     touching how the footer renders on desktop. */
+  .footer {
+    height: auto;
+  }
+  .footer__grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.1rem;
+  }
+  .footer__col {
+    margin-bottom: 2.5rem;
+  }
+
+  .footer { padding-bottom: 2rem; }
+  .footer__col { margin-bottom: 1.5rem; }
+  .brand_grid p { margin-left: -3rem; margin-top: 3.5rem; font-size: 0.5rem;}
+  .footer_logo { height: 5.2rem; margin-right: 0.75rem; }
+  .footer__bottom {font-size: 1.4rem;}
+  .brand_grid { font-size: 1.9rem; margin-left: 1.3rem; }
+
+
+  /* crew.html — bio + image panels: fixed columns (600px 1000px / 600px
+     900px) made fluid so they don't force a scrollbar on tablets. */
+  .ama_grid,
+  .afia_grid,
+  .josie_grid,
+  .jem_grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+  }
+
+  /* crew.html — "team under X" avatar rows: fixed 250px/300px columns
+     made fluid so tablets get as many as fit instead of overflowing. */
+  .team-animated-group {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .jemteam-animated-group {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  /* crew.html — decorative rules pinned to 1000px, wider than a tablet */
+  .about__divider,
+  .crew-content hr,
+  hr {
+    width: min(100%, 1000px);
+  }
+
+  /* crew.html — avatar row is nowrap by design on desktop; let it wrap
+     once the four avatars no longer fit a tablet-width row. */
+  .crewBrand_grid {margin-left: 31rem;}
+  .crewBrand_grid p {margin-left: -4rem}
+
+  .crew_link {
+    flex-wrap: wrap;
+    row-gap: 1.5rem;
+  }
+
+  .section {
+    padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+
+  /* crew: keep the two-column bio/image layout but tighten it */
+  .ama_grid, .afia_grid, .josie_grid, .jem_grid {
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+  }
+  .amaservice-image,
+  .afiaservice-image,
+  .josieservice-image {
+    height: clamp(340px, 42vw, 600px);
+  }
+
+  .crew-content {
+    padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 1.5rem);
+  }
+
+  .team-card .team-avatar {
+    width: clamp(150px, 20vw, 200px);
+    height: clamp(150px, 20vw, 200px);
+  }
+  .about__team-grid .team-card .team-avatar {
+    width: clamp(140px, 20vw, 190px);
+    height: clamp(140px, 20vw, 190px);
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   912px and below  —  Surface Pro 7 (and any Z Fold 5 unfolded ~884)
+   Navigation converts to the hamburger drawer at this point on both pages.
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+
+  /* ─── NAV (index.html) ─── */
+  .nav { padding: 0.6rem clamp(0.9rem, 3vw, 1.5rem); }
+  .nav__brand { margin-left: 0; }
+  .navBrand_grid { font-size: clamp(1.4rem, 3.5vw, 2rem); }
+  .navBrand_grid .logo { height: clamp(52px, 9vw, 80px); width: auto; margin-left: -1rem; }
+  .navBrand_grid p { display: none; }
+  .navLogoText {margin-top: 0.2rem;}
+
+  .nav__toggle { display: flex; }
+
+  .nav__links {
+    position: fixed;
+    top: 0; right: -100%;
+    width: min(85vw, 190px);
+    height: 100dvh;
+    padding: 5.5rem 1.5rem 2rem;
+    margin: 0;
+    background: var(--navy-deep);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.9rem;
+    overflow-y: auto;
+    transition: right 0.35s ease;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+  }
+  .nav__links.is-open { right: 0; }
+  .nav__links a {
+    width: 100%;
+    padding: 0.75rem;
+    color: var(--white) !important;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+  }
+  .nav__links a:not(.nav__cta)::after { display: none; }
+  .nav__cta { width: 100%; text-align: center; margin-top: 0.5rem; }
+
+  .about__story-body p { font-size: 1.9rem; }
+  .why__lead, .why__list {font-size: 1.9rem;}
+
+  /* Footer */
+  .footer { padding-bottom: 2rem; }
+  .footer__col { margin-bottom: 1.5rem; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 0 rem; }
+  .footer__col p {font-size: 1.3rem;}
+  .footer__col a {font-size: 1.3rem;}
+  .footer__col h4 {font-size: 1.3rem;}
+  .brand_grid { font-size: 1.9rem; margin-left: 0.6rem; }
+  .brand_grid p { margin-left: -3.5rem; }
+  .footer_logo { height: 5.1rem; margin-right: -1rem;}
+  .footer__bottom {font-size: 1.3rem;}
+
+  /* Testimonials: one card visible at a time */
+  .testimonials_grid { padding: 1.25rem; }
+  .testimonial { flex-basis: min(100vw, 443px); padding: 1rem; }
+  .testimonial_body h3 { font-size: 1.7rem; }
+  .testimonial_body p { font-size: 1.2rem; }
+
+
+  /* ─── HERO ─── */
+  .hero__title { font-size: clamp(2.2rem, 6.5vw, 3.6rem); }
+
+  /* ─── CREW: bio + image stack to one column ─── */
+  .ama_grid, .afia_grid, .josie_grid, .jem_grid {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 3rem);
+  }
+  .amaservice-image,
+  .afiaservice-image,
+  .josieservice-image {
+    height: clamp(300px, 60vw, 480px);
+  }
+
+  .crewBrand_grid {margin-left: 25rem;}
+
+  .crew-hero__bio {
+    font-size: clamp(1.6rem, 3.5vw, 1.9rem);
+    text-align: left;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   820px and below  —  iPad Air
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 820px) {
+
+  .section__head { margin-bottom: clamp(2rem, 5vw, 3rem); }
+
+  .about__team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.1rem;
+  }
+
+  .things {
+    padding: 18px 30px;
+    font-size: 15px;
+  }
+
+  /* ─── ABOUT / TEAM TEASER ─── */
+  .about__team-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .team-card { padding: 1.25rem 0.85rem; }
+  .team-card .team-avatar { width: 100px; height: 100px; }
+  .team-card .team-name { font-size: 1.05rem; }
+  .team-card .team-role { font-size: 0.85rem; }
+
+  /* crew hero avatar row */
+  .crewBrand_grid {margin-left: 25rem;}
+  .crewBrand_grid p {margin-left: -4rem}
+
+  .crew-hero__avatar {
+    width: clamp(90px, 15vw, 130px);
+    height: clamp(90px, 15vw, 130px);
+  }
+  .crew_link { gap: clamp(1.25rem, 4vw, 2.5rem); }
+
+  .team-animated-group,
+  .jemteam-animated-group {
+    gap: 1.25rem;
+  }
+
+   /* Footer */
+  .footer { padding-bottom: 2rem; }
+  .footer__col { margin-bottom: 1.5rem; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 0 rem; }
+  .footer__col p {font-size: 1.3rem;}
+  .footer__col a {font-size: 1.3rem;}
+  .footer__col h4 {font-size: 1.3rem;}
+  .brand_grid { font-size: 1.9rem; margin-left: 1.2rem; }
+  .brand_grid p { margin-left: -4rem; }
+  .footer_logo { height: 5.1rem; }
+  .footer__bottom {font-size: 1.3rem;}
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   768px and below  —  iPad Mini  (core mobile/tablet takeover point)
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  .navBrand_grid {margin-left: -2rem; margin-top: 1rem;}
+  .logo{ margin-bottom: 1rem;}
+
+  body { font-size: 16px; }
+  h2 { font-size: clamp(1.9rem, 6vw, 3rem); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: max(600px, 100svh);
+    margin-top: 0;
+    padding: 6rem 1.25rem 3rem;
+  }
+  .hero__sub { font-size: clamp(1rem, 2.4vw, 1.15rem); }
+  .hero__cta {
+    flex-direction: column;
+    width: min(100%, 420px);
+    margin-inline: auto;
+  }
+  .btn { width: 100%; justify-content: center; min-height: 48px; }
+
+  /* ─── SECTIONS ─── */
+  .section { padding: clamp(2.5rem, 7vw, 4rem) clamp(1rem, 4vw, 1.75rem); }
+
+  .about__story-body p,
+  .why__body, .why__body p {
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+  }
+
+  /* Services filter pills → even 3-up row */
+  .service_link {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .service_link a.things {
+    margin: 0;
+    padding: 0.9rem 0.4rem;
+    font-size: clamp(0.7rem, 2vw, 0.95rem);
+    letter-spacing: 0.06em;
+  }
+
+   /* ─── ABOUT / TEAM TEASER ─── */
+  .about__team-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .team-card { padding: 1.25rem 0.85rem; }
+  .team-card .team-avatar { width: 100px; height: 100px; }
+  .team-card .team-name { font-size: 1.05rem; }
+  .team-card .team-role { font-size: 0.85rem; }
+
+  /* Testimonials: one card visible at a time */
+  .testimonials_grid { padding: 1.25rem; }
+  .testimonial { flex: 0 0 min(85vw, 380px); padding-left: 1.25rem; }
+  .testimonial_body h3 { font-size: 1.7rem; }
+  .testimonial_body p { font-size: 1.2rem; }
+
+  /* Booking */
+  .book__options { grid-template-columns: 1fr; }
+  .book__card { padding: clamp(1.75rem, 6vw, 3rem); }
+
+  /* Footer */
+  .footer { padding-bottom: 2rem; }
+  .footer__col { margin-bottom: 1.5rem; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 0 rem; }
+  .footer__col p {font-size: 1.3rem;}
+  .footer__col a {font-size: 1.3rem;}
+  .footer__col h4 {font-size: 1.3rem;}
+  .brand_grid { font-size: 1.9rem; margin-left: 1.2rem; }
+  .brand_grid p { margin-left: -4rem; }
+  .footer_logo { height: 5.5rem; }
+  .footer__bottom {font-size: 1.3rem;}
+
+  /* ─── CREW HERO ─── */
+  .crewBrand_grid {margin-left: 20rem;}
+  .crewBrand_grid p{margin-left: -4rem;}
+
+
+  .crew-hero { padding: 2.5rem 1.25rem 2rem; }
+  .crew-hero p,
+  .crew-hero__intro { margin-top: 0; font-size: clamp(1rem, 3vw, 1.25rem); }
+  .crew-hero__avatar {
+    width: clamp(78px, 18vw, 110px);
+    height: clamp(78px, 18vw, 110px);
+  }
+  .crew-avatar__name { font-size: 1rem !important; }
+  .crew-avatar__role { font-size: 0.75rem; }
+
+  body.crew-active.crew-slim .crew-hero { padding-block: 0.85rem; }
+  body.crew-active.crew-slim .crew-hero__avatar { width: 50px; height: 50px; }
+
+  /* ─── CREW CONTENT ─── */
+  .crew-content { gap: 2rem; padding: 2rem 1.25rem; scroll-margin-top: 100px; }
+  .crew-content h1 { font-size: clamp(1.5rem, 4vw, 1.9rem); }
+  .section-title, .feedsection-title { font-size: clamp(1.9rem, 5vw, 2.6rem); }
+  .crew-hero__bio { font-size: clamp(1.3rem, 2.5vw, 1.6rem); }
+
+  .team-card .team-avatar {
+    width: clamp(120px, 26vw, 170px);
+    height: clamp(120px, 26vw, 170px);
+  }
+
+  .feedback-section { padding: 1.5rem; }
+  .feedback-section p.feedback-intro { font-size: 1rem; }
+  .form-group label { font-size: 1rem; }
+  .btn-submit, .btn-whatsapp-direct { font-size: 1.15rem; padding: 0.8rem 1.5rem; }
+
+  .crew-footer { padding: 3rem 1.25rem; font-size: 1.1rem; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   600px and below  —  Surface Duo (540) · phones in landscape
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+
+  /* index.html */
+  .navBrand_grid {margin-left: 0.1rem; margin-top: 0.2rem;}
+  .logo{ margin-bottom: 0.2rem;}
+
+
+  .footer { padding-bottom: 2rem; }
+  .footer__col { margin-bottom: 1.5rem; }
+  .brand_grid p { margin-left: -3.5rem; margin-top: 3.5rem; font-size: 0.5rem;}
+  .footer_logo { height: 5.2rem; margin-right: 0.6rem; }
+  .footer__bottom {font-size: 1.3rem;}
+  .brand_grid { font-size: 1.9rem; margin-left: 1.4rem; }
+
+  /* crew.html */
+  .crewBrand_grid {margin-top: -5rem;}
+  .crewBrand_grid p{margin-left: -3rem;}
+  
+  .back-nav {
+    padding: 0.75rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+  .back-nav .brand_grid { margin-left: auto; margin-top: 0; margin-bottom: 0; }
+  .back-nav .brand_grid p { display: none; }
+  .back-nav .logo { width: auto; height: 60px; }
+  .back-nav .brand { font-size: 1.4rem; margin-left: -0.5rem; }
+
+  .hero__title { font-size: clamp(1.9rem, 8vw, 2.8rem); }
+
+  .service__media { height: clamp(180px, 50vw, 230px); }
+
+  .testimonial { flex-basis: min(88vw, 500px); }
+  .testimonial_media { flex-wrap: wrap; }
+  .avatar { width: 110px; height: 110px; }
+
+  .book__opt { padding: 1.5rem; }
+
+  /* Crew avatar row scrolls horizontally once pinned, to avoid squeezing */
+  body.crew-active.crew-slim .crew_link {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 0.75rem;
+    padding-bottom: 0.15rem;
+  }
+  body.crew-active.crew-slim .crew_link .things { flex: 0 0 auto; }
+
+  /* Feedback form: two-up rows become one column (crew_styles.css already
+     does this for .form-row at 600px — kept here only for the star row) */
+  .star-rating { justify-content: flex-start; }
+  .star-rating label { font-size: 2rem; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   440px and below
+   iPhone 14/15/16 Pro Max (430) · iPhone XR (414) · Pixel 7/8/9/10 (412) ·
+   Galaxy S20 Ultra / A51 / A71 (412)
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 440px) {
+
+  /* ─── NAV ─── */
+  .navBrand_grid {margin-left: -5rem; margin-bottom: 0.5rem;}
+
+
+  .nav { padding: 0.5rem 0.85rem; }
+  .navLogoText {margin-top: 0.2rem; margin-left: -0.8rem}
+  .navBrand_grid { font-size: 1.4rem; margin-left: -0.3rem; }
+  .navBrand_grid .logo { height: 48px;  margin-bottom: 0.2rem;}
+  .back-nav .logo { height: 48px; }
+  .back-nav .brand { font-size: 1.2rem; }
+
+  .about__story-body p { font-size: 1.5rem; }
+  .why__lead, .why__list { font-size: 1.3rem !important;}
+
+  /* ─── HERO ─── */
+  .hero { padding: 5.5rem 1rem 2.5rem; }
+  .hero__title { font-size: clamp(1.7rem, 8vw, 2.3rem); }
+  .hero__sub { font-size: 0.95rem; }
+  .btn { font-size: 0.95rem; padding: 0.8rem 1.4rem; }
+
+  /* ─── ABOUT / TEAM TEASER ─── */
+  .about__team-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .team-card { padding: 1.25rem 0.85rem; }
+  .team-card .team-avatar { width: 100px; height: 100px; }
+  .team-card .team-name { font-size: 1.05rem; }
+  .team-card .team-role { font-size: 0.85rem; }
+
+  /* ─── SERVICES ─── */
+  .service_link { grid-template-columns: repeat(3, 1fr); }
+  .service_link a.things { font-size: 0.65rem; padding: 0.7rem 0.25rem; }
+  .services_grid, .commercial_grid, .residential_grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonial { flex-basis: min(90vw, 320px); padding: 1rem; }
+  .testimonial_body h3 { font-size: 1.5rem; }
+  .testimonial_body p { font-size: 1rem; }
+  .avatar { width: 90px; height: 90px; }
+
+  /* ─── BOOKING ─── */
+  .book__intro h2 { font-size: 1.7rem; }
+  .book__opt-icon { width: 52px; height: 52px; }
+
+  /* ─── FOOTER ─── */
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 0.1rem; }
+  .footer__col p {font-size: 1.2rem;}
+  .footer__col a {font-size: 1.2rem;}
+  .footer__col h4 {font-size: 1.2rem;}
+  .brand_grid { font-size: 1.2rem; margin-left: 1rem; }
+  .brand_grid p{display: none; }
+  .footer_logo { height: 5.0rem; margin-left: 0.4rem;}
+  .footer__bottom {font-size: 1.05rem;}
+
+  /* ─── CREW HERO ─── */
+  .crewBrand_grid {margin-left: 15rem; margin-top: -4rem; }
+  .crewBrand_grid p {display: none;}
+  .navLogo{height: 4rem; margin-right: -0.5rem;}
+  
+  .crew_link { max-width: 22rem; margin-inline: auto; gap: 0.9rem; }
+  .crew_link .things { flex: 1 1 7.5rem; padding: 0.5rem 0.25rem; }
+  .crew-hero__avatar { width: clamp(64px, 22vw, 88px); height: clamp(64px, 22vw, 88px); }
+  .crew-avatar__name { font-size: 0.85rem !important; }
+  .crew-avatar__role { font-size: 0.65rem; }
+
+  /* ─── CREW CONTENT ─── */
+  .section-title, .feedsection-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .crew-hero__bio { font-size: 1.2rem; }
+  .team-animated-group, .jemteam-animated-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .team-card .team-avatar { width: 110px; height: 110px; }
+
+  /* ─── FEEDBACK FORM ─── */
+  .form-row { grid-template-columns: 1fr; }
+  .btn-submit, .btn-whatsapp-direct {
+    width: 100%;
+    justify-content: center;
+    font-size: 1.05rem;
+  }
+  .star-rating label { font-size: 1.8rem; }
+
+  .crew-footer { padding: 2.5rem 1rem; font-size: 0.95rem; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   390px and below  —  iPhone 12 Pro
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 390px) {
+  /* crew.html */
+  .crewBrand_grid {margin-left: 13rem; margin-top: -4rem; }
+  .crewBrand_grid p {display: none;}
+  .navLogo{height: 4rem; margin-right: -0.5rem;}
+
+
+  .hero__title { font-size: clamp(1.55rem, 7.5vw, 2.1rem); }
+  .section { padding-inline: 0.9rem; }
+
+  .about__team-grid { gap: 0.85rem; }
+  .team-card .team-avatar { width: 90px; height: 90px; }
+
+  .crew-content { padding-inline: 0.9rem; }
+  .crew-hero { padding-inline: 0.9rem; }
+
+  /* index.html */
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 0.1rem; }
+  .footer__col p {font-size: 1.1rem;}
+  .footer__col a {font-size: 1.1rem;}
+  .footer__col h4 {font-size: 1.2rem;}
+
+}
+
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   375px and below  —  iPhone SE
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 375px) {
+
+  .navBrand_grid { margin-bottom: 1rem;}
+
+  h2 { font-size: clamp(1.6rem, 7vw, 2.1rem); }
+  h3 { font-size: 1.5rem; }
+
+  .eyebrow { font-size: 1.1rem; padding: 0.4rem 0.75rem; }
+
+  .about__story-body p { font-size: 0.95rem; }
+  .why__lead { font-size: 1rem; }
+
+  .testimonial { flex-basis: min(92vw, 300px); }
+
+  .step__num { font-size: 3rem; }
+  .step h3 { font-size: 1.25rem; }
+  .step p { font-size: 1rem; }
+
+  /* crew hero */
+  .crewBrand_grid {margin-left: 12rem; margin-top: -4rem; }
+  .crewBrand_grid p {display: none;}
+  .navLogo{height: 4rem; margin-right: -0.5rem;}
+  
+  .crew-avatar__name { font-size: 0.8rem !important; }
+  .crew-hero__bio { font-size: 0.92rem; }
+  .crew_link { max-width: 22rem; margin-inline: auto; gap: 0.9rem; }
+  .crew_link .things { flex: 1 1 7.5rem; padding: 0.5rem 0.25rem; }
+  .crew-hero__avatar { width: clamp(64px, 22vw, 88px); height: clamp(64px, 22vw, 88px); }
+  .crew-avatar__name { font-size: 0.85rem !important; }
+  .crew-avatar__role { font-size: 0.65rem; }
+  
+
+  /* ─── FOOTER ─── */
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 0.1rem; }
+  .footer__col p {font-size: 1rem;}
+  .footer__col a {font-size: 1rem;}
+  .footer__col h4 {font-size: 1rem;}
+  .brand_grid { font-size: 1rem; margin-right: -3rem; }
+  .brand_grid p{margin-left: -2rem; font-size: 0.55rem; margin-bottom: 1rem;}
+  .footer_logo { height: 3.5rem; margin-right: 0.4rem; width: 6rem;}
+  .footer__bottom {font-size: 1rem;}
+  
+}
+
+
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   360px and below  —  Galaxy S8+
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 360px) {
+
+  .navBrand_grid { font-size: 1.15rem; }
+  .navBrand_grid .logo { height: 42px; }
+  .back-nav .logo { height: 42px; }
+  .back-nav .brand { font-size: 1.05rem; }
+
+  .hero { padding-inline: 0.75rem; }
+  .hero__title { font-size: clamp(1.4rem, 8vw, 1.9rem); }
+
+  .about__team-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-card .team-avatar { width: 80px; height: 80px; }
+  .about__story-body p { font-size: 1rem; }
+  .why__lead, .why__list {font-size: 1rem;}
+
+  .crew_link .things { font-size: 0.78rem; }
+  .team-animated-group, .jemteam-animated-group { grid-template-columns: 1fr 1fr; }
+  .team-animated-group .team-avatar,
+  .jemteam-animated-group .team-avatar { width: 90px; height: 90px; }
+
+   /* ─── FOOTER ─── */
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 0.1rem; }
+  .footer__col p {font-size: 1rem;}
+  .footer__col a {font-size: 1rem;}
+  .footer__col h4 {font-size: 1rem;}
+  .brand_grid { font-size: 1rem; margin-right: -3rem; }
+  .brand_grid p{margin-left: -2rem; font-size: 0.55rem; margin-bottom: 1rem;}
+  .footer_logo { height: 3.5rem; margin-right: 0.4rem;}
+  .footer__bottom {font-size: 1rem;}
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   344px and below  —  Galaxy Z Fold 5 (folded / cover screen)
+   Absolute minimum: single column everywhere, roles hidden to save space.
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 344px) {
+
+  body { font-size: 14px; }
+
+  .navBrand_grid .logo { height: 36px; }
+  .back-nav .logo { height: 36px; }
+  .back-nav .brand { font-size: 0.9rem; }
+  .back-nav a { font-size: 1rem; }
+
+  .hero { padding: 4.5rem 0.6rem 2rem; }
+  .hero__title { font-size: 1.35rem; }
+  .hero__sub { font-size: 0.85rem; }
+  .btn { font-size: 0.85rem; padding: 0.7rem 1rem; }
+
+  .about__story-body p { font-size: 1rem; }
+  .why__lead, .why__list {font-size: 1rem;}
+  .about__team-grid,
+  .footer__grid,
+  .team-animated-group,
+  .jemteam-animated-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .crew_link { gap: 0.6rem; }
+  .crew_link .things { flex: 1 1 45%; }
+  .crew-avatar__role { display: none; }
+  .crew-hero__avatar { width: 56px; height: 56px; }
+
+  .section-title, .feedsection-title { font-size: 1.4rem; }
+  .crew-hero__bio { font-size: 0.85rem; }
+
+  .form-group input, .form-group select, .form-group textarea {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+   /* ─── FOOTER ─── */
+  .brand_grid { font-size: 1.5rem; margin-left: 1rem;}
+  .footer_logo { height: 4rem; margin-right: 0.0rem; width: 7rem;}
+  .footer__bottom {font-size: 1rem;}
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   Short landscape viewports — phones rotated, Surface Duo landscape
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-height: 620px) and (orientation: landscape) {
+
+  .hero {
+    min-height: 100vh;
+    padding-block: 4rem 1.5rem;
+  }
+  .hero__title { font-size: clamp(1.6rem, 5vw, 2.6rem); }
+  .hero__cta { margin-bottom: 1.5rem; }
+
+  .crew-hero { padding-block: 1.25rem; }
+  .crew-hero p, .crew-hero__intro { margin-bottom: 0.75rem; }
+  .crew-hero__avatar { width: 60px; height: 60px; }
+
+  body.crew-active .crew-hero { position: sticky; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY & PRINT (device-independent)
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .nav, .nav__toggle, .fab-whatsapp, .hero__cta, .crew-hero {
+    display: none !important;
+  }
+  body { color: #000; background: #fff; font-size: 12pt; line-height: 1.5; }
+  section { page-break-inside: avoid; }
+  img { max-width: 100%; }
+}

@@ -1,0 +1,679 @@
+/* ===== SHARED CREW PAGE STYLES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter+Tight:wght@400;500;600&display=swap');
+
+:root {
+  --primary: #1FA8D9;
+  --primary-dark: #1589b5;
+  --primary-soft:  #E6F4FB;
+  --navy: #0B1F2E;
+  --navy-mid: #122334;
+  --white: #FFFFFF;
+  --gray: #9BB4CC;
+  --light: #F0F7FA;
+  --card-bg: #F8FBFD;
+  --bg-soft: #F4F9FC;
+  --border: #D6EAF4;
+  --text: #1a2e3e;
+  --text-muted: #5a7a8e;
+  --green: #25D366;
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(11,31,46,0.10);
+  --shadow-hover: 0 12px 40px rgba(31,168,217,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0px; }
+
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--light);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ── BACK NAV ── */
+.back-nav {
+  background: var(--navy);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: -3rem;
+}
+.back-nav a {
+  color: var(--gray);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+  margin-top: 2rem;
+}
+.back-nav a:hover { color: var(--primary); }
+.back-nav .brand {
+  margin-left: -1rem;
+  color: var(--white);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.back-nav .brand span { color: var(--primary); }
+.section-title span { color: var(--primary); } 
+
+.navLogo {
+  width: 80%;
+  height: 5.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.crewBrand_grid {
+  display: flex;
+  align-items: center; 
+  margin-left: auto;
+  margin-top: 2.3rem;
+  margin-bottom: -1rem;
+  
+   /* display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  margin-right: 2.5rem; */
+}
+
+.crewBrand_grid p {
+  display: flex;
+  margin-top: 2.9rem;
+  font-size: 10px;
+  margin-left: -6.5rem;
+  width: 100%;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ── HERO BAND ── */
+.crew-hero {
+  background: linear-gradient(135deg, var(--navy) 60%, #0e2d44 100%);
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.crew-hero p {
+  font-size: 1.4rem;
+  margin-bottom: 3rem;
+  margin-top: -4rem;
+}
+
+
+.crew_link {
+  display: flex;
+  flex-wrap: nowrap;          /* keep all four in one line on desktop */
+  justify-content: center;
+  align-items: flex-start;    /* align tops so names sit evenly */
+  gap: 3rem;
+  margin-top: -1rem;
+}
+
+.crew-hero__avatar-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+.crew-hero__avatar {
+  width: 150px; height: 150px; 
+  border-radius: 50%;
+  border: 4px solid var(--primary);
+  object-fit: cover;
+  box-shadow: 0 0 0 8px rgba(31,168,217,0.15);
+}
+
+.crew-avatar__name {
+    font-size: 19px !important;
+    font-weight: 700 !important;
+}
+
+.crew-hero__bio {
+  text-align: justify;
+  margin: 0 auto;
+  color: black;
+  font-size: 1.7rem;
+  line-height: 1.7;
+  margin-top: 1.5rem;
+}
+
+
+  /* ── PANEL SHOW/HIDE ──
+     All four crew panels are hidden by default.
+     Only the one with class="crew-panel active" is shown.
+     The feedback section always stays visible. */
+  .crew-panel        { display: none; }
+  .crew-panel.active { display: block; }
+  .feedback-always   { display: block; }
+
+  /* ── AVATAR COLUMN (image + name + role) ──
+     Each .things link wraps an img, a name span, and a role span
+     in a vertical column, and all four columns sit in a horizontal row. */
+  .things {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.25s;
+    cursor: pointer;
+  }
+  .things:hover  { opacity: 1; transform: translateY(-4px); }
+
+  /* Active avatar: full opacity + glow ring */
+  .things.active-crew { opacity: 1; }
+  .things.active-crew .crew-hero__avatar {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 5px var(--primary), 0 8px 24px rgba(31,168,217,0.4);
+  }
+
+  /* Name + role labels under each avatar */
+  .crew-avatar__name {
+    color: #ffffff;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+  }
+  .crew-avatar__role {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Intro line above the avatar row */
+  .crew-hero__intro {
+    color: var(--gray);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+
+/* ── MAIN CONTENT ── */
+.crew-content {
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: grid;
+  gap: 3rem;
+}
+
+/* FIX CSS-6: Added heading styles for h1 inside modal sections.
+   The crew member names are <h1> tags inside .crew-content divs,
+   but had no scoped styles — they inherited the body font and rendered
+   in plain Inter Tight instead of the brand Bricolage Grotesque. */
+.crew-content h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--avy);
+  margin-bottom: 0.3rem;
+}
+
+/* Added spacing between crew modal sections.
+   Without it the four sections ran together with no visual separation. */
+/* .crew-content > div {
+  padding-top: 2rem;
+  border-top: 1px solid var(-border);
+}
+.crew-content > div:first-child {
+  padding-top: 0;
+  border-top: none;
+} */
+
+/* ── SECTION TITLE ── */
+hr{
+  border-top: 1px solid  var(--primary-dark);
+  width: 1000px;           /* short line */
+  margin: 1.5rem auto;   /* centres it */
+  margin-top: 5rem;
+
+}
+
+.section-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;  
+  text-align: center;
+}
+
+.feedsection-title{
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;  
+  text-align: left;
+
+}
+
+
+/* ── WHAT WE DO CARDS ── */
+/* ama */
+.ama_grid,
+.afia_grid,
+.josie_grid{
+  display: grid;
+  gap: 8rem;
+  grid-template-columns: 600px 1000px;
+}
+
+.jem_grid{
+  display: grid;
+  gap: 8rem;
+  grid-template-columns: 600px 900px;
+}
+
+.amaservice-image{
+  height:600px;
+  background-size:cover;
+  background-position:center;
+  border-radius: 0 100px 0 100px;
+  animation: ama 16s ease-in-out infinite;
+
+}
+
+@keyframes ama{
+
+  0%{
+      background-image:url(../images/wed.jpg);
+  }
+  
+  15%{
+      background-image:url(../images/party.jpg);
+  }
+
+  30%{
+      background-image:url(../images/outdoor2.avif);
+  }
+  
+  45%{
+      background-image:url(../images/outdoor0.jpg);
+  }
+  
+  60%{
+      background-image:url(../images/wed1.jpg);
+  }
+
+  80%{
+      background-image:url(../images/party3.jpg);
+  }
+  
+  100%{
+      background-image:url(../images/wed4.jpg);
+  }
+  
+}
+
+
+/* afia */
+.afiaservice-image{
+  height:600px;
+  background-size:cover;
+  background-position:center;
+  border-radius: 100px 0 100px 0;
+  animation: afia 16s ease-in-out infinite;
+
+}
+
+@keyframes afia{
+
+  0%{
+    background-image:url(../images/restuarant7.jpg);
+}
+
+15%{
+    background-image:url(../images/coporate5.jpg);
+}
+
+30%{
+    background-image:url(../images/hosp3.jpg);
+}
+
+45%{
+    background-image:url(../images/class2.jpg);
+}
+
+60%{
+    background-image:url(../images/classroom.jpg);
+}
+
+75%{
+    background-image:url(../images/full-shot-men-cleaning-office.jpg);
+}
+
+85%{
+  background-image:url(../images/cafe-owner.jpg)
+}
+
+100%{
+    background-image:url(../images/cleaning-office.jpg);
+}
+
+}
+
+  
+/* josie */
+.josieservice-image{
+  height:600px;
+  background-size:cover;
+  background-position:center;
+  border-radius: 100px 0 100px 0;
+  animation: josie 16s ease-in-out infinite;
+
+}
+
+@keyframes josie{
+
+  0%{
+    background-image:url(../images/deep1.jpg);
+}
+
+15%{
+    background-image:url(../images/move-in\ clean.jpg);
+}
+
+30%{
+    background-image:url(../images/image-african-american-.webp);
+}
+
+45%{
+    background-image:url(../images/gettyimages-21817.jpg);
+}
+
+60%{
+    background-image:url(../images/deep\ clean2.jpg);
+}
+
+75%{
+    background-image:url(../images/outdoor.jpg);
+}
+
+85%{
+  background-image:url(../images/deepp.jpg)
+}
+
+100%{
+    background-image:url(../images/deepp.jpg);
+}
+
+  
+  }
+  
+
+
+/* ── TEAM SECTION ── */
+
+.jemteam-animated-group{
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  gap: 2rem;
+}
+
+.team-animated-group {
+  position: relative;   /* ← add this */
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px 300px;
+  gap: 2rem;
+  place-content: center;
+}
+
+.team-card {
+  background: var(--bg-soft);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 2rem 1.25rem;
+  text-align: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.team-card:hover {
+  background: white;
+  transform: translateY(-4px);
+}
+
+.team-card .team-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;  
+  margin: 0 auto 1rem;
+  flex-shrink: 0;  /* stops the avatar from squishing or moving */
+  object-fit:cover;
+}
+.team-card .team-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.team-animated-group::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(31,168,217,0.08) 0%, transparent 70%);
+}
+
+.animated-person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  animation: float-bob linear infinite;
+}
+.animated-person:nth-child(1) { animation-duration: 3.2s; }
+.animated-person:nth-child(2) { animation-duration: 2.8s; animation-delay: 0.5s; }
+.animated-person:nth-child(3) { animation-duration: 3.5s; animation-delay: 1s; }
+.animated-person:nth-child(4) { animation-duration: 2.6s; animation-delay: 0.3s; }
+.animated-person:nth-child(5) { animation-duration: 3.1s; animation-delay: 0.8s; }
+
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+/* ── FEEDBACK FORM ── */
+.feedback-section {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.feedback-section p.feedback-intro {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-size: 1.22rem;
+  line-height: 1.6;
+}
+
+/* If the user types text into type="number", it triggers the :invalid state */
+input:invalid {
+  border: 2px solid red;
+  background-color: #ffcccc;
+}
+
+/* Hide the error message by default */
+.error-msg {
+  display: none;
+  color: red;
+  font-size: 0.95rem;
+}
+
+/* Show the error message only when the input is invalid AND not empty */
+input:invalid:not(:placeholder-shown) + .error-msg {
+  display: block;
+}
+
+.feedback-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label { font-size: 1.19rem; font-weight: 600; color: var(--navy); }
+.form-group input, .form-group select, .form-group textarea {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.99rem;
+  color: var(--text);
+  background: var(--light);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(31,168,217,0.12);
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+/* Star rating */
+.star-rating { display: flex; gap: 0.3rem; flex-direction: row-reverse; justify-content: flex-end; }
+.star-rating input { display: none; }
+.star-rating label {
+  font-size: 2.3rem;
+  color: #D0D8DE;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label { color: #F4A261; }
+
+.btn-submit {
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 2rem;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+.btn-submit:hover { background: var(--primary); transform: translateY(-2px); }
+
+
+.success-msg {
+  display: none;
+  background: #E8F8EE;
+  border: 1.5px solid #25D366;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  color: #1a6b35;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+/* ── FOOTER ── */
+.crew-footer {
+  background: var(--navy);
+  color: var(--gray);
+  text-align: center;
+  padding: 10rem;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+.crew-footer a { color: var(--primary); }
+
+
+
+/* ── PINNED CREW SELECTOR ──
+   When a crew member is clicked, script.js adds `crew-active` to the
+   <body>, which makes the crew hero STICK to the top so you can pick
+   another member without scrolling back up.
+
+   The hero keeps its full initial size, padding, etc. while you're at
+   the top of the page. Once you scroll down, script.js adds `crew-slim`
+   and the hero shrinks into a slim bar (smaller avatars, hidden hint
+   and role labels). Scroll back to the top and it expands again. */
+
+/* Sticky on selection — but FULL SIZE until scrolled */
+body.crew-active .crew-hero {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Smooth transitions for the inner pieces as the bar slims */
+.crew-hero__avatar {
+  transition: width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+}
+.crew_link {
+  transition: gap 0.3s ease, margin-bottom 0.3s ease;
+}
+.crew-hero__intro {
+  transition: opacity 0.25s ease, max-height 0.3s ease, margin 0.3s ease;
+  max-height: 60px;
+  overflow: hidden;
+}
+.crew-avatar__role {
+  transition: opacity 0.25s ease, max-height 0.3s ease;
+  max-height: 24px;
+  overflow: hidden;
+}
+
+/* SLIMMED state — only once pinned (clicked) AND scrolled down */
+body.crew-active.crew-slim .crew-hero {
+  padding: 2.5rem 1rem;
+  box-shadow: 0 6px 20px rgba(11, 31, 46, 0.28);
+}
+body.crew-active.crew-slim .crew-hero__intro {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+}
+body.crew-active.crew-slim .crew_link {
+  gap: 0rem;
+  margin-bottom: 0;
+}
+body.crew-active.crew-slim .crew-hero__avatar {
+  width: 58px;
+  height: 58px;
+  box-shadow: 0 0 0 4px rgba(31, 168, 217, 0.15);
+}
+body.crew-active.crew-slim .crew-avatar__name {
+  font-size: 0.95rem;
+  margin-top: 0;
+}
+body.crew-active.crew-slim .crew-avatar__role {
+  opacity: 0;
+  max-height: 0;
+}
+
+/* Keep scrolled-to content clear of the slim bar.
+   (mediaQuery.css lowers this on small screens.) */
+.crew-content { scroll-margin-top: 120px; }
+
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE RULES MOVED OUT:
+   All @media blocks for this page now live in css/mediaQuery.css.
+   ────────────────────────────────────────────────────────── */
+
